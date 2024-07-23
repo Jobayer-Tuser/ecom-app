@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('product_variants', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('product_id')->nullable()->constrained()->cascadeOnUpdate()->restrictOnDelete();
+            $table->string('colour');
+            $table->string('size');
+            $table->double('price');
+            $table->integer('stock_quantity');
             $table->timestamps();
         });
     }
@@ -22,6 +27,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('product_variants');
+        Schema::table('product_variants', function (Blueprint $table){
+           $table->dropConstrainedForeignId('product_id');
+           $table->dropIfExists();
+        });
     }
 };
