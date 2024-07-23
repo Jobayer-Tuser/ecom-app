@@ -16,8 +16,11 @@
                 <x-nav-submenu>
                     <x-nav-link href="{{route('product-item.index')}}"> Item list</x-nav-link>
                     <x-nav-link href="{{route('product-item.create')}}">Item Create</x-nav-link>
+                    <x-nav-link href="{{route('product-variant.index')}}">Variant list</x-nav-link>
+                    <x-nav-link href="{{route('product-variant.create')}}">Variant Create</x-nav-link>
                 </x-nav-submenu>
             </x-nav-dropdown>
+
 
         </div>
     </div>

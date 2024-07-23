@@ -43,6 +43,11 @@ class Product extends Model
         return $this->hasMany(ProductItem::class);
     }
 
+    public function productVariants() : HasMany
+    {
+        return $this->hasMany(ProductVariant::class);
+    }
+
     protected static function newFactory(): ProductFactory|Factory
     {
         return ProductFactory::new();

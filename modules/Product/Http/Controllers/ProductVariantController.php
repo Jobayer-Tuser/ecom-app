@@ -6,15 +6,22 @@ use App\Http\Controllers\Controller;
 use Modules\Product\Http\Requests\StoreProductVariantRequest;
 use Modules\Product\Http\Requests\UpdateProductVariantRequest;
 use Modules\Product\Models\ProductVariant;
+use Modules\Product\Services\ProductService;
+use Modules\Product\Services\ProductVariantService;
 
 class ProductVariantController extends Controller
 {
+    public function __construct(private readonly ProductVariantService $productVariantService, private readonly ProductService $productService)
+    {
+
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $productVariants = $this->productVariantService->getVariants();
+        return view('product::product-variant.index', compact('productVariants'));
     }
 
     /**
@@ -22,7 +29,8 @@ class ProductVariantController extends Controller
      */
     public function create()
     {
-        //
+        $products = $this->productService->getProductNameAndId();
+        return view('product::product-variant.creat', compact('products'));
     }
 
     /**

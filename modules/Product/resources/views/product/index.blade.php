@@ -6,11 +6,17 @@
         <link href="{{ asset('assets/plugins/bootstrap-table/dist/bootstrap-table.min.css')}}" rel="stylesheet" />
     @endpush
     <div class="container">
+        <div class="d-flex align-items-center mb-2">
+            <div>
+                <h5 class="mb-0">Product</h5>
+            </div>
+            <div class="ms-auto">
+                <a href="{{ route('product.create') }}" class="btn btn-primary mb-2"> <i class="fa fa-plus-circle fa-fw me-1"></i> Add New</a>
+            </div>
+        </div>
         <div class="row justify-content-center">
             <div class="col-xl-12">
                 <div id="stripedRows" class="mb-5">
-                    <h5>Products</h5>
-                    <a href="{{ route('product.create') }}" class="btn btn-primary me-2"> <i class="fa fa-plus-circle"></i> Add New</a>
                     <div class="card">
                         <div class="card-body">
                             <table id="datatableDefault" class="table table-striped mb-0 text-nowrap w-100">

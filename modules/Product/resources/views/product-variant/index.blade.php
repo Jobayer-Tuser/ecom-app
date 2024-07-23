@@ -6,11 +6,17 @@
         <link href="{{ asset('assets/plugins/bootstrap-table/dist/bootstrap-table.min.css')}}" rel="stylesheet" />
     @endpush
     <div class="container">
+        <div class="d-flex align-items-center mb-2">
+            <div>
+                <h5 class="mb-0">Product Variants</h5>
+            </div>
+            <div class="ms-auto">
+                <a href="{{ route('product-variant.create') }}" class="btn btn-primary mb-2"> <i class="fa fa-plus-circle fa-fw me-1"></i> Add New</a>
+            </div>
+        </div>
         <div class="row justify-content-center">
             <div class="col-xl-12">
                 <div id="stripedRows" class="mb-5">
-                    <h5>Products</h5>
-                    <a href="{{ route('product-item.create') }}" class="btn btn-primary me-2"> <i class="fa fa-plus-circle"></i> Add New</a>
                     <div class="card">
                         <div class="card-body">
                             <table id="datatableDefault" class="table table-striped mb-0 text-nowrap w-100">
@@ -18,27 +24,25 @@
                                 <tr>
                                     <th scope="col">Sl No.</th>
                                     <th scope="col">Product</th>
-                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Colour</th>
+                                    <th scope="col">Size</th>
                                     <th scope="col">Price</th>
-                                    <th scope="col">Sale Price</th>
-                                    <th scope="col">Image</th>
-                                    <th scope="col">SKU</th>
+                                    <th scope="col">Stock</th>
                                     <th scope="col" class="w-auto auto-cols-min">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($productItems as $productItem)
+                                @foreach($productVariants as $productVariant)
                                     <tr>
-                                        <th scope="row">{{$loop->iteration}}</th>
-                                        <td>{{ $productItem->product->name }}</td>
-                                        <td>{{ $productItem->product_quantity }}</td>
-                                        <td>{{ $productItem->price }}</td>
-                                        <td>{{ $productItem->sale_price }}</td>
-                                        <td>{{ $productItem->product_image }}</td>
-                                        <td>{{ $productItem->sku }}</td>
+                                        <th scope="row">{{ $loop->iteration }}</th>
+                                        <td>{{ $productVariant->product->name }}</td>
+                                        <td>{{ $productVariant->colour }}</td>
+                                        <td>{{ $productVariant->size }}</td>
+                                        <td>{{ $productVariant->price }}</td>
+                                        <td>{{ $productVariant->stock_quantity }}</td>
                                         <td>
-                                            <a href="{{ route('product-item.edit', $productItem->id) }}" class="btn btn-warning btn-sm"> <i class="fa fa-pen-square"></i> Edit </a>
-                                            <form method="POST" action="{{ route('product-item.destroy', $productItem->id) }}" class="d-inline">
+                                            <a href="{{ route('product-variant.edit', $productVariant->id) }}" class="btn btn-warning btn-sm"> <i class="fa fa-pen-square"></i> Edit </a>
+                                            <form method="POST" action="{{ route('product-variant.destroy', $productVariant->id) }}" class="d-inline">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i> Delete</button>
