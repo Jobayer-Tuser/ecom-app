@@ -4,6 +4,7 @@ namespace Modules\Product\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class ProductVariant extends Model
@@ -15,11 +16,11 @@ class ProductVariant extends Model
         'colour',
         'size',
         'price',
-        'stock_quantity'
+        'stock_quantity',
     ];
 
-    public function product() : BelongsToMany
+    public function product() : BelongsTo
     {
-        return $this->belongsToMany(Product::class);
+        return $this->belongsTo(Product::class);
     }
 }

@@ -7,10 +7,10 @@
         <div class="row justify-content-center">
             <div class="col-xl-12">
                 <div id="formGrid" class="mb-5">
-                    <h5>Add Product Items</h5>
+                    <h5 class="mb-2">Add Product Variant</h5>
                     <div class="card">
                         <div class="card-body">
-                            <form method="post" action="{{ route('product-item.store') }}" enctype="multipart/form-data">
+                            <form method="post" action="{{ route('product-variant.store') }}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row mb-n3">
                                     <x-form class="col-xl-6" :title="'Select Product'">
@@ -21,21 +21,22 @@
                                         </x-input-select>
                                     </x-form>
 
-                                    <x-form class="col-xl-6" :title="'Stock Quantity'">
-                                        <x-input-text name="product_quantity" type="number" value="{{ old('product_quantity') }}" />
+                                    <x-form class="col-xl-6"  :title="'Colour'">
+                                        <x-input-text name="colour" type="text" value="{{ old('colour') }}"/>
+                                    </x-form>
+
+                                    <x-form class="col-xl-6"  :title="'Size'">
+                                        <x-input-text name="size" type="text" value="{{ old('size') }}"/>
                                     </x-form>
 
                                     <x-form class="col-xl-6"  :title="'Price'">
                                         <x-input-text name="price" type="text" value="{{ old('price') }}"/>
                                     </x-form>
 
-                                    <x-form class="col-xl-6"  :title="'Sale Price'">
-                                        <x-input-text name="sale_price" type="text" value="{{ old('sale_price') }}"/>
+                                    <x-form class="col-xl-6" :title="'Stock Quantity'">
+                                        <x-input-text name="stock_quantity" type="number" value="{{ old('stock_quantity') }}" />
                                     </x-form>
 
-                                    <x-form class="col-xl-12"  :title="'Product Image'">
-                                        <x-input-text name="product_images" type="file" value="{{ old('product_images') }}" />
-                                    </x-form>
                                 </div>
                                 <div class="row mt-2">
                                     <div class="float-right col-xl-12">

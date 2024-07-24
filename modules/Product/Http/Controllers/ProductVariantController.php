@@ -13,7 +13,6 @@ class ProductVariantController extends Controller
 {
     public function __construct(private readonly ProductVariantService $productVariantService, private readonly ProductService $productService)
     {
-
     }
     /**
      * Display a listing of the resource.
@@ -30,7 +29,7 @@ class ProductVariantController extends Controller
     public function create()
     {
         $products = $this->productService->getProductNameAndId();
-        return view('product::product-variant.creat', compact('products'));
+        return view('product::product-variant.create', compact('products'));
     }
 
     /**
@@ -38,15 +37,9 @@ class ProductVariantController extends Controller
      */
     public function store(StoreProductVariantRequest $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(ProductVariant $productVariant)
-    {
-        //
+        $request->validated();
+        $this->productVariantService->storeVariants($request->validated());
+        return redirect()->back()->with('status', 'Variant Created Successfully');
     }
 
     /**
@@ -54,7 +47,8 @@ class ProductVariantController extends Controller
      */
     public function edit(ProductVariant $productVariant)
     {
-        //
+        $products = $this->productService->getProductNameAndId();
+        return view('product::product-variant.edit', compact('productVariant', 'products'));
     }
 
     /**
@@ -62,7 +56,8 @@ class ProductVariantController extends Controller
      */
     public function update(UpdateProductVariantRequest $request, ProductVariant $productVariant)
     {
-        //
+        $this->productVariantService->updateProductVariants($request->validated(), $productVariant);
+        return redirect()->route('product-variant.index')->with('status', 'Variant updated successfully');
     }
 
     /**

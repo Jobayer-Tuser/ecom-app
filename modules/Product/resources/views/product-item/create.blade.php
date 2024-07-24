@@ -1,8 +1,4 @@
 <x-app-layout>
-    @push('css')
-        <link href="{{ asset('assets/plugins/tag-it/css/jquery.tagit.css')}}" rel="stylesheet" />
-        <link href="{{ asset('assets/plugins/summernote/dist/summernote-lite.css')}}" rel="stylesheet" />
-    @endpush
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-12">
@@ -49,10 +45,4 @@
             </div>
         </div>
     </div>
-
-    @push('script')
-        <script src="{{ asset('assets/plugins/jquery-migrate/dist/jquery-migrate.min.js')}}" type="text/javascript"></script>
-        <script src="{{ asset('assets/plugins/tag-it/js/tag-it.min.js')}}" type="text/javascript"></script>
-        <script src="{{ asset('assets/plugins/summernote/dist/summernote-lite.min.js')}}" type="text/javascript"></script>
-    @endpush
 </x-app-layout>
