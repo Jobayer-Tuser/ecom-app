@@ -4,6 +4,7 @@
             <div class="menu-header">Navigation</div>
             <x-nav-menu :path="'dashboard'" :href="route('dashboard')" :icon="'fa fa-laptop'">Dashboard</x-nav-menu>
             <x-nav-menu :path="'category'" :href="route('category.index')" :icon="'fa fa-laptop'">Category</x-nav-menu>
+            <x-nav-menu :path="'customer'" :href="route('customer.index')" :icon="'fa fa-laptop'">Customer</x-nav-menu>
 
             <x-nav-dropdown :title="'Product'" :icon="'fa fa-envelope'" :path="'product'" >
                 <x-nav-submenu>

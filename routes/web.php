@@ -1,15 +1,14 @@
 <?php
 
-use App\Http\Controllers\{
-    CartController,
+use App\Http\Controllers\{CartController,
     CategoryController,
     CheckoutController,
+    CustomerController,
     HomepageController,
     RoleController,
     Misc\GaugeReadingController,
     Admin\DashboardController,
-    Admin\ProfileController,
-};
+    Admin\ProfileController};
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'auth', 'verified']], function (){
@@ -18,6 +17,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'auth', 'verified']
     Route::resource('profile', ProfileController::class)->except(['index', 'show']);
     Route::resource('category', CategoryController::class)->except('show');
     Route::resource('role', RoleController::class);
+    Route::get('customer', CustomerController::class)->name('customer');
 });
 
 
