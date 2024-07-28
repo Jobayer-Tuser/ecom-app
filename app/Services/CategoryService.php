@@ -4,7 +4,9 @@ namespace App\Services;
 
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 class CategoryService
@@ -21,11 +23,13 @@ class CategoryService
         return Category::with('parentCategory')->orderByDesc('id')->get(['id', 'name', 'parent_category_id', 'status']);
     }
 
-    public function storeAndUpdateCategory(CategoryRequest $request) : array
+    public function storeCategory(array $storeData) : Builder|Model
     {
-        return array_merge_recursive(
-            $request->validated(),
-            ['slug' => Str::slug($request->input('name'))]
-        );
+        return Category::query()->create($storeData);
+    }
+
+    public function updateCategory(array $dataToUpdate, Category $category) : bool
+    {
+        return $category->update($dataToUpdate);
     }
 }

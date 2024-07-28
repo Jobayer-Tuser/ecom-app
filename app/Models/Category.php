@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Casts\GenerateSlug;
 use App\Traits\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -48,6 +49,7 @@ class Category extends Model
     protected function casts(): array
     {
         return [
+            'slug' => GenerateSlug::class,
         ];
     }
 }

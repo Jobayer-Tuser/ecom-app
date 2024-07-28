@@ -13,9 +13,8 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        $role = ['Admin', 'Vendor', 'User'];
-        array_map(
-            fn($role) => Role::query()->create(['name' => $role])
-        ,$role);
+        $role = ['Admin', 'User', 'Manager'];
+        array_map(fn($role) => Role::query()->create(['name' => $role]) ,$role);
+//        Role::factory()->create();
     }
 }

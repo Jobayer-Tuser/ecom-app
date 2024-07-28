@@ -14,8 +14,8 @@ return new class extends Migration
     {
         Schema::create('user_profiles', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->foreignId('country_id');
+            $table->foreignId('user_id')->constrained()->cascadeOnUpdate()->restrictOnDelete();
+            $table->foreignId('country_id')->constrained()->cascadeOnUpdate()->restrictOnDelete();
             $table->string('phone');
             $table->string('phone_verified_at');
             $table->string('address');
@@ -39,6 +39,5 @@ return new class extends Migration
            $table->dropForeign(['country_id']);
            $table->dropIfExists();
         });
-        Schema::dropIfExists('vendors');
     }
 };

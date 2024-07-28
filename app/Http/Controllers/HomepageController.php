@@ -4,16 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Misc\JsonController;
 use Illuminate\Contracts\View\View;
+use Modules\Product\Services\ProductService;
 
 class HomepageController extends Controller
 {
-    public function index() : View
+    public function index(ProductService $productService) : View
     {
         /*for ($i = 1; $i < 40; $i++){
             dispatch(new SendEmailJob($i));
         }*/
 
-        return view('front.home');
+        $products = $productService->getAllProducts();
+
+        return view('front.home', compact('products'));
     }
 
     public function checkJson(): JsonController

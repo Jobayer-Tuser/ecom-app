@@ -3,9 +3,7 @@
 namespace Modules\Product\Services;
 
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Http\File;
 use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Str;
 use Modules\Product\Http\Requests\ProductRequest;
 use Modules\Product\Models\Product;
 
@@ -56,7 +54,6 @@ class ProductService
         return array_merge(
             $requestData,
             [
-                'slug'       => Str::slug($requestData['name']),
                 'image'      => $fileName,
                 'created_at' => date('Y-m-d H:i:s'),
             ],

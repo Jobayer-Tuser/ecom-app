@@ -24,7 +24,7 @@ class ProductFactory extends Factory
         $name = fake()->words(nb: 4, asText: true);
         return [
             'name'          => $name,
-            'category_id'   => Category::inRandomOrder()->first()->id, // or Category::factory()->create()->id
+            'category_id'   => Category::query()->inRandomOrder()->first()->id, // or Category::factory()->create()->id
             'slug'          => Str::slug($name),
             'summary'       => fake()->text(),
             'description'   => fake()->paragraphs(asText: true),

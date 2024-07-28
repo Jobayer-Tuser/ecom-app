@@ -2,6 +2,7 @@
 
 namespace Modules\Product\Models;
 
+use App\Casts\GenerateSlug;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -27,6 +28,10 @@ class Product extends Model
         'description',
         'image',
         'category_id'
+    ];
+
+    protected $casts = [
+        'slug' => GenerateSlug::class,
     ];
 
     protected $dispatchesEvents = [

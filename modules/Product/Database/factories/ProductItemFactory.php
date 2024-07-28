@@ -19,7 +19,7 @@ class ProductItemFactory extends Factory
     public function definition(): array
     {
         return [
-            'product_id'        => Product::inRandomOrder()->first()->id,
+            'product_id'        => Product::query()->inRandomOrder()->first()->id,
             'sku'               => strtoupper(fake()->unique()->bothify('SKU-??#####')),
             'product_quantity'  => 10,
             'product_images'    => '',

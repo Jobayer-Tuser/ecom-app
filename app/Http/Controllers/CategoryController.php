@@ -12,31 +12,32 @@ use Illuminate\View\View;
 
 class CategoryController extends Controller
 {
-    public function __construct(private readonly CategoryService $service){}
+    public function __construct(private readonly CategoryService $categoryService){}
+
     public function index() : Application|Factory|View
     {
-        $categories = $this->service->categories();
+        $categories = $this->categoryService->categories();
         return view('admin.category.index', compact('categories'));
     }
 
     public function store(CategoryRequest $request) : RedirectResponse
     {
-        $storeData = $this->service->storeAndUpdateCategory($request);
-        Category::query()->create($storeData);
+        $request->validated();
+        $this->categoryService->storeCategory(storeData: $request->validationData());
         return redirect()->back();
     }
 
     public function edit(Category $category): Application|Factory|View
     {
-        $categories = $this->service->categories();
+        $categories = $this->categoryService->categories();
         return view('admin.category.edit', compact('category', 'categories'));
     }
 
     public function update(CategoryRequest $request, Category $category) : RedirectResponse
     {
-        $updateData = $this->service->storeAndUpdateCategory($request);
-
-        if ($category->update($updateData)){
+        $request->validated();
+        $updateData = $this->categoryService->updateCategory(dataToUpdate: $request->validationData(), category: $category );
+        if ($updateData){
             return redirect(route('category.index'));
         }
 
