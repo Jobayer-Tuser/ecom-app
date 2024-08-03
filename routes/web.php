@@ -1,16 +1,16 @@
 <?php
 
-use App\Http\Controllers\{CartController,
-    CategoryController,
-    CheckoutController,
-    CustomerController,
-    HomepageController,
-    RoleController,
-    Misc\GaugeReadingController,
-    Admin\DashboardController,
-    Admin\ProfileController};
-use Illuminate\Support\Facades\Route;
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Misc\GaugeReadingController;
+use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\RoleController;
 Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'auth', 'verified']], function (){
 
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');

@@ -32,13 +32,13 @@ services:
             MYSQL_USER: "${DB_USERNAME}"
             MYSQL_PASSWORD: "${DB_PASSWORD}"
         volumes:
-            -   mysqldata:/var/lib/mysql
+            -   mysqldb:/var/lib/mysql
 
     redis:
         image: redis:5
         volumes:
-            -   redisdata:/data
+            -   redis:/data
 volumes:
-    mysqldata:
-    redisdata:
+    mysqldb:
+    redis:
 

@@ -2,7 +2,7 @@
 
 namespace Modules\Product\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use Modules\JiraBoard\Http\Controllers\Controller;
 use App\Services\CategoryService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;

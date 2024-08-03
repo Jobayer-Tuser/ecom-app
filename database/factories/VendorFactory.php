@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Vendor;
+use Modules\JiraBoard\Models\Vendor;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

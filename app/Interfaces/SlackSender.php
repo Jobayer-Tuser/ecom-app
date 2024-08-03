@@ -2,7 +2,7 @@
 
 namespace App\Interfaces;
 
-use App\Http\Controllers\TaskController;
+use Modules\JiraBoard\Http\Controllers\TaskController;
 
 class SlackSender implements NotificationSender
 {

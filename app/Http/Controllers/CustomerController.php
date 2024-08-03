@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\Role;
-use App\Models\User;
+use Modules\JiraBoard\Models\User;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller

@@ -2,7 +2,7 @@
 
 namespace Modules\Product\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use Modules\JiraBoard\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Modules\Product\Http\Requests\ProductItemRequest;
 use Modules\Product\Models\ProductItem;

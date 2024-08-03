@@ -2,8 +2,8 @@
 
 namespace App\Interfaces;
 
-use App\Http\Controllers\TaskController;
-use App\Models\User;
+use Modules\JiraBoard\Http\Controllers\TaskController;
+use Modules\JiraBoard\Models\User;
 
 interface NotificationSender
 {

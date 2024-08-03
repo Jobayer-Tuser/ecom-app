@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Models\Category;
+use Modules\JiraBoard\Models\Category;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Modules\Product\Models\Product;
 use Tests\TestCase;

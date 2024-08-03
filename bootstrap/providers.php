@@ -1,8 +1,11 @@
 <?php
 
+use Modules\Product\Providers\EventServiceProvider;
+use Modules\Product\Providers\TopupServiceProvider;
+
 return [
     App\Providers\AppServiceProvider::class,
-    \Modules\Product\Providers\EventServiceProvider::class,
     App\Providers\TelescopeServiceProvider::class,
-    Modules\Product\Providers\ProductServiceProvider::class,
+    EventServiceProvider::class,
+    TopupServiceProvider::class,
 ];

@@ -3,7 +3,7 @@
 namespace Modules\Product\Models;
 
 use App\Casts\GenerateSlug;
-use App\Models\Category;
+use Modules\JiraBoard\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

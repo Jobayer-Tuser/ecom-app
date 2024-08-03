@@ -15,7 +15,7 @@ class ProductService
      */
     public function __construct()
     {
-        $this->storagePath = config('product.file_upload_dir');
+        $this->storagePath = config('product.file_upload_dir', 'public/admin/product/');
     }
 
     public function getAllProducts() : Collection

@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Category;
+use Modules\JiraBoard\Models\Category;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 

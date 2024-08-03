@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Misc;
+namespace Modules\JiraBoard\Http\Controllers\Misc;
 
 use Stringable;
 

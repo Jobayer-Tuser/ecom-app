@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\Role;
+use Modules\JiraBoard\Models\Role;
 use Illuminate\Database\Eloquent\Collection;
 
 class RoleService

@@ -15,7 +15,6 @@ class ProductServiceProvider extends ServiceProvider
 
         $this->mergeConfigFrom(__DIR__. "/../config/config.php", 'product');
         $this->loadViewsFrom(__DIR__. '/../resources/views', 'product');
-
         $this->loadMigrationsFrom(__DIR__ . "/../Database/migrations");
 
         Event::listen(events: ProductCreatedEvent::class, listener: [ProductCreatedListener::class]);

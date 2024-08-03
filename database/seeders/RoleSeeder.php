@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Role;
+use Modules\JiraBoard\Models\Role;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 

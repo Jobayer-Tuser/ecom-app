@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Misc\JsonController;
+use Modules\JiraBoard\Http\Controllers\Misc\JsonController;
 use Illuminate\Contracts\View\View;
 use Modules\Product\Services\ProductService;
 
