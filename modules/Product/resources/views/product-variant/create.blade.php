@@ -38,7 +38,7 @@
                                     </x-form>
 
                                 </div>
-                                <div class="row mt-2">
+                                <div class="row mb-2">
                                     <div class="float-right col-xl-12">
                                         <button type="submit" class="btn btn-success">Create</button>
                                     </div>

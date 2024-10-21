@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <title>{{ $title ?? config('app.name', 'Job Portal') }}</title>
+    <title>{{ $title ?? config('app.name', 'E Commerce Admin') }}</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link href="{{asset("assets/css/vendor.min.css")}}" rel="stylesheet"/>
-    <link href="{{asset("assets/css/app.min.css")}}" rel="stylesheet"/>
+    <link href="{{ asset("assets/css/vendor.min.css") }}" rel="stylesheet"/>
+    <link href="{{ asset("assets/css/app.min.css") }}" rel="stylesheet"/>
     @stack('css')
 </head>
 <body>
@@ -22,7 +22,7 @@
     </div>
 
     <div id="content" class="app-content">
-        {{$slot}}
+        {{ $slot }}
     </div>
 
     <a href="#" data-click="scroll-top" class="btn-scroll-top fade"><i class="fa fa-arrow-up"></i></a>
@@ -33,8 +33,8 @@
 
 <script src="{{asset('assets/js/vendor.min.js')}}" type="text/javascript"></script>
 <script src="{{asset("assets/js/app.min.js")}}" type="text/javascript"></script>
+<script src="{{asset('assets/plugins/jquery-migrate/dist/jquery-migrate.min.js')}}" type="text/javascript"></script>
 <script src="{{asset("assets/plugins/apexcharts/dist/apexcharts.min.js")}}" type="text/javascript"></script>
-<script src="{{asset("assets/js/demo/dashboard.demo.js")}}" type="text/javascript"></script>
 @stack('script')
 </body>
 </html>

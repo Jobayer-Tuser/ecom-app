@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Modules\JiraBoard\Http\Controllers\Misc\JsonController;
 use Illuminate\Contracts\View\View;
 use Modules\Product\Services\ProductService;
+use App\Http\Controllers\Misc\JsonController;
+use App\Jobs\SendEmailJob;
 
 class HomepageController extends Controller
 {

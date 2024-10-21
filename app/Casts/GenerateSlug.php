@@ -4,6 +4,7 @@ namespace App\Casts;
 
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class GenerateSlug implements CastsAttributes
@@ -23,8 +24,11 @@ class GenerateSlug implements CastsAttributes
      *
      * @param  array<string, mixed>  $attributes
      */
-    public function set(Model $model, string $key, mixed $value, array $attributes): mixed
+    public function set(Model $model, string $key, mixed $value, array $attributes): string
     {
-        return Str::slug($value);
+        if (empty($value) && !empty($attributes['name'])) {
+            $value = Str::slug($attributes['name']);
+        }
+        return $value;
     }
 }

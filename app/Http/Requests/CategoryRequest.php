@@ -2,8 +2,12 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\Status;
+use App\Models\Category;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class CategoryRequest extends FormRequest
 {
@@ -23,9 +27,16 @@ class CategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'parent_category_id' => 'nullable',
-            'name' => 'required',
-            'status' => 'required',
+            'name'               => ['required', 'string','max:255'],
+            'status'             => ['required', Rule::enum(Status::class)],
+            'parent_category_id' => ['nullable', 'integer', Rule::exists(Category::class)],
         ];
+    }
+
+    protected function prepareForValidation(): void
+    {
+        $this->merge([
+           'slug' => Str::slug($this->name),
+        ]);
     }
 }

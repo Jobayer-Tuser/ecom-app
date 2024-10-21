@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace Modules\JiraBoard\Console\Commands;
 
 use Illuminate\Console\Command;
 use Modules\JiraBoard\Http\Services\DailyTaskService;

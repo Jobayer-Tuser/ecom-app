@@ -3,7 +3,8 @@
 namespace App\Http\Dto;
 
 use App\Http\Requests\ProfileUpdateRequest;
-use Modules\JiraBoard\Models\User;
+use App\Models\User;
+
 
 class ProfileDto
 {

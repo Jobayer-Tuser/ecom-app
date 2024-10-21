@@ -2,7 +2,7 @@
 
 namespace Modules\Product\Http\Controllers;
 
-use Modules\JiraBoard\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Modules\Product\Http\Requests\ProductItemRequest;
 use Modules\Product\Models\ProductItem;
@@ -11,9 +11,11 @@ use Modules\Product\Services\ProductService;
 
 class ProductItemController extends Controller
 {
-    public function __construct(private readonly ProductItemService $productItemService, private readonly ProductService $productService)
-    {
-    }
+    public function __construct(
+        private readonly ProductItemService $productItemService,
+        private readonly ProductService $productService
+    ){}
+
     /**
      * Display a listing of the resource.
      */

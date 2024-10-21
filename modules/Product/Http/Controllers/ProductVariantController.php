@@ -2,7 +2,7 @@
 
 namespace Modules\Product\Http\Controllers;
 
-use Modules\JiraBoard\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 use Modules\Product\Http\Requests\StoreProductVariantRequest;
 use Modules\Product\Http\Requests\UpdateProductVariantRequest;
 use Modules\Product\Models\ProductVariant;

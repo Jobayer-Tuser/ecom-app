@@ -22,6 +22,7 @@
                 </x-nav-submenu>
             </x-nav-dropdown>
 
+            <x-nav-menu :path="'chat'" :href="route('chat.index')" :icon="'fa fa-chat'">Chat</x-nav-menu>
 
         </div>
     </div>

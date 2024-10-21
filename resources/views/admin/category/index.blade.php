@@ -1,5 +1,4 @@
 <x-app-layout>
-    <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-12">
                 <div id="stripedRows" class="mb-5">
@@ -62,7 +61,7 @@
                             <div class="col-xl-4">
                                 <div class="fs-12px text-muted mb-2"><b>Parent</b></div>
                                 <select name="parent_category_id" class="form-select mb-3">
-                                    <option>Select a Parent</option>
+                                    <option value="">Select a Parent</option>
                                     @foreach($categories as $category)
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                                     @endforeach
@@ -75,8 +74,8 @@
                             <div class="col-xl-4">
                                 <div class="fs-12px text-muted mb-2"><b>Status</b></div>
                                 <select name="status" class="form-select mb-3">
-                                    <option>Status</option>
-                                    <option value="1">Active</option>
+                                    <option value="">Status</option>
+                                    <option selected value="1">Active</option>
                                     <option value="0">Inactive</option>
                                 </select>
                             </div>
@@ -89,5 +88,4 @@
                 </form>
             </div>
         </div>
-    </div>
 </x-app-layout>

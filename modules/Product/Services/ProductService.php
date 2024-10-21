@@ -2,28 +2,32 @@
 
 namespace Modules\Product\Services;
 
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\File;
 use Modules\Product\Http\Requests\ProductRequest;
 use Modules\Product\Models\Product;
+use Nette\Utils\Image;
 
 class ProductService
 {
-    private string $storagePath;
     /**
      * Create a new class instance.
      */
     public function __construct()
     {
-        $this->storagePath = config('product.file_upload_dir', 'public/admin/product/');
     }
 
-    public function getAllProducts() : Collection
+    public function getAllProducts() : LengthAwarePaginator
     {
 //        Product::with('category:id, name, category_id')->get();
-        return Product::with(['category' => function($query) {
-            $query->select('id', 'name');
-        }])->orderByDesc('id')->get(['id', 'name', 'image', 'category_id']);
+        return Product::query()->select(['id', 'name', 'image', 'category_id'])
+            ->with(['category' => function($query) {
+                $query->select('id', 'name');
+            }])
+            ->orderByDesc('id')
+            ->paginate(20);
     }
 
     public function getProductNameAndId() : Collection
@@ -33,26 +37,30 @@ class ProductService
 
     public function storeProduct(ProductRequest $request): bool
     {
-        $fileName    = $this->storeFile($request->file('image'));
-        $prepareData = $this->prepareData($request->validated(), $fileName);
-
+        $fileName    = $this->storeProductImage($request->file('image'));
+        $prepareData = $this->prepareData($request->except('_token'), $fileName);
         return Product::query()->insert($prepareData);
     }
 
-    private function storeFile(UploadedFile $image): string
+    private function storeProductImage(UploadedFile $image): string
     {
-        $fileName = "PRODUCT_" . date('his') . '.'. $image->clientExtension();
+        $prepareImageName = "PRODUCT_" . date('his') . '.'. $image->clientExtension();
 
-        if (!file_exists($this->storagePath .$fileName )){
-            $image->storeAs($this->storagePath, $fileName);
+        if ( !file_exists(public_path('storage/products') . $prepareImageName ) ){
+            $image->storeAs(public_path('storage/products'), $prepareImageName);
         }
-        return $fileName;
+
+        return $prepareImageName;
+    }
+
+    private function resizeImage(UploadedFile $image)
+    {
+
     }
 
     private function prepareData(array $requestData, string $fileName): array
     {
-        return array_merge(
-            $requestData,
+        return array_merge( $requestData,
             [
                 'image'      => $fileName,
                 'created_at' => date('Y-m-d H:i:s'),

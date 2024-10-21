@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Misc;
 
-use Modules\JiraBoard\Http\Controllers\Controller;
-use Modules\JiraBoard\Models\GaugeReading;
+use App\Http\Controllers\Controller;
+use App\Models\GaugeReading;
 use Generator;
 use Illuminate\Support\Facades\DB;
 

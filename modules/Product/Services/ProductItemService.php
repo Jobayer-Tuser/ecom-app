@@ -12,23 +12,15 @@ use Modules\Product\Models\ProductItem;
 
 class ProductItemService
 {
-    private string $storagePath;
-    /**
-     * Create a new class instance.
-     */
-    public function __construct()
-    {
-        $this->storagePath = config('product.file_upload_dir');
-    }
-
     public function getAllProductItems() : Collection
     {
-        return ProductItem::query()->with(['product' => function ($query) {
-            $query->select('id', 'name');
-        }])
-        ->orderByDesc('id')
-        ->get()
-        ->except(['created_at', 'updated_at', 'deleted_at']);
+        return ProductItem::query()
+            ->with(['product' => function ($query) {
+                $query->select('id', 'name');
+            }])
+            ->orderByDesc('id')
+            ->get()
+            ->except(['created_at', 'updated_at', 'deleted_at']);
     }
 
     public function storeProductItem(ProductItemRequest $request)

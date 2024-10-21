@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Misc;
 
 use App\Enums\Priority;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller

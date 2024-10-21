@@ -1,15 +1,12 @@
 <?php
 
-namespace Modules\JiraBoard\Http\Controllers\Misc;
+namespace App\Http\Controllers\Misc;
 
 use Stringable;
 
 readonly class JsonController implements Stringable
 {
-    public function __construct(private array $json)
-    {
-
-    }
+    public function __construct(private array $json){}
 
     public function value(string $key, mixed $default = null): mixed
     {

@@ -1,8 +1,9 @@
 <?php
 
-namespace Modules\JiraBoard\Http\Controllers\Misc;
+namespace App\Http\Controllers\Misc;
 
-use Modules\JiraBoard\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class JwtController extends Controller
 {

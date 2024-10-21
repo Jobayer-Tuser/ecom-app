@@ -2,8 +2,11 @@
 
 namespace Modules\Product\Http\Requests;
 
+use App\Models\Category;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class ProductRequest extends FormRequest
 {
@@ -23,11 +26,18 @@ class ProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'category_id' => 'required',
-            'name'        => 'required',
-            'summary'     => 'required',
-            'description' => 'required',
-            'image'       => 'required',
+            'name'        => ['required', 'string', 'max:255'],
+            'summary'     => ['required', 'string'],
+            'description' => ['required', 'string'],
+            'image'       => ['required', 'image', 'max:2048', 'mimes:jpg,jpeg,png,pdf'],
+            'category_id' => ['required', Rule::exists(Category::class, 'id')],
         ];
+    }
+
+    protected function prepareForValidation(): void
+    {
+        $this->merge([
+            'slug' => Str::slug($this->name),
+        ]);
     }
 }

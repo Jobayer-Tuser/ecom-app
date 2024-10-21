@@ -2,7 +2,7 @@
 
 namespace Modules\Product\Http\Controllers;
 
-use Modules\JiraBoard\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 use App\Services\CategoryService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -23,6 +23,7 @@ class ProductController extends Controller
     public function index() : Application|View
     {
         $products = $this->productService->getAllProducts();
+//        dd($products);
         return view('product::product.index', compact('products'));
     }
 

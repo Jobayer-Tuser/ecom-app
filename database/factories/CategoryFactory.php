@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use Modules\JiraBoard\Models\Category;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
