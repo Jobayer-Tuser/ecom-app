@@ -16,9 +16,9 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-//        session()->flush();
-        if ( ! auth()->check() || auth()->user()->role_id !== Role::ADMIN->value ) {
-            abort(403);
+        # session()->flush();
+        if ( ! auth()->user()->hasRole(Role::ADMIN->value) ) {
+            abort(403, 'Unauthorized action');
         }
 
         return $next($request);

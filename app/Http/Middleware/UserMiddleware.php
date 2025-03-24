@@ -12,13 +12,14 @@ class UserMiddleware
     /**
      * Handle an incoming request.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param Closure(Request): (Response) $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next, string $role): Response
     {
-        if ( ! auth()->check() || auth()->user()->role_id !== Role::USER->value ) {
+        if (!auth()->user()->hasRole($role)) {
             abort(403);
         }
+
         return $next($request);
     }
 }

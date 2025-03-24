@@ -19,19 +19,21 @@ readonly class JsonController implements Stringable
     }
 }
 
-//function json(mixed ...$args): JsonController
-//{
-//    return new JsonController($args);
-//}
-//
-//$json = json(
-//    name: 'Dilo surucu',
-//    job: 'Development',
-//    status: true
-//);
-//
-//echo $json;
-////{'name':'Dilo surucu','job':'Development','status':true}
-//
-//echo $json->value('name');
-//echo $json->value('job');
+/*
+    function json(mixed ...$args): JsonController
+    {
+        return new JsonController($args);
+    }
+
+    $json = json(
+        name: 'Dilo surucu',
+        job: 'Development',
+        status: true
+    );
+
+    echo $json;
+    {'name':'Dilo surucu','job':'Development','status':true}
+
+    echo $json->value('name');
+    echo $json->value('job');
+*/

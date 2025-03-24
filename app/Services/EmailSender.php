@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Interfaces;
+namespace App\Services;
 
-use Modules\JiraBoard\Http\Controllers\TaskController;
-use Modules\JiraBoard\Models\User;
+use App\Http\Controllers\Misc\TaskController;
+use App\Interfaces\NotificationSender;
 
 class EmailSender implements NotificationSender
 {

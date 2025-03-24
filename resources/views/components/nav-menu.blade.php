@@ -1,10 +1,9 @@
-@props(['href', 'icon', 'path'])
+@props(['href', 'icon', 'active'])
 @php
-$path = 'admin/' . $path;
-    $class = (request()->path() == $path) ? 'active' : '';
+    $active = $active ? 'active' : '';
 @endphp
 
-<div {{ $attributes->class(['menu-item', 'active' => $class ]) }}>
+<div {{ $attributes->class(["menu-item $active"]) }}>
     <a href="{{ $href }}" class="menu-link">
         <span class="menu-icon"><i class="{{ $icon }}"></i></span>
         <span class="menu-text">{{ $slot }}</span>

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use App\Services\CategoryService;
@@ -22,20 +23,20 @@ class CategoryController extends Controller
 
     public function store(CategoryRequest $request) : RedirectResponse
     {
-        $request->validated();
         $this->categoryService->storeCategory(storeData: $request->validationData());
         return redirect()->back();
     }
 
     public function edit(Category $category): Application|Factory|View
     {
+        $this->authorize('update', $category);
+
         $categories = $this->categoryService->categories();
         return view('admin.category.edit', compact('category', 'categories'));
     }
 
     public function update(CategoryRequest $request, Category $category) : RedirectResponse
     {
-        $request->validated();
         $updateData = $this->categoryService->updateCategory(dataToUpdate: $request->validationData(), category: $category );
         if ($updateData){
             return redirect(route('category.index'));

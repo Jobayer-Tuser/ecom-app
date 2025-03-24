@@ -13,7 +13,13 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('parent_category_id')->nullable()->constrained('categories')->references('id')->cascadeOnUpdate()->restrictOnDelete();
+            $table->foreignId('parent_category_id')
+                ->nullable()
+                ->constrained('categories')
+                ->references('id')
+                ->cascadeOnUpdate()
+                ->restrictOnDelete();
+
             $table->string('name');
             $table->string('slug');
             $table->tinyInteger('status')->default(1);
@@ -31,7 +37,5 @@ return new class extends Migration
             $table->dropConstrainedForeignId('parent_category_id');
             $table->dropIfExists();
         });
-
-        #Schema::dropIfExists('categories');
     }
 };

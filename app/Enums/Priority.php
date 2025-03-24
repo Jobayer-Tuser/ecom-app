@@ -2,10 +2,10 @@
 
 namespace App\Enums;
 
-use App\Interfaces\EmailSender;
 use App\Interfaces\NotificationSender;
-use App\Interfaces\PhoneMessageSender;
-use App\Interfaces\SlackSender;
+use App\Services\EmailSender;
+use App\Services\PhoneMessageSender;
+use App\Services\SlackSender;
 
 enum Priority : string
 {

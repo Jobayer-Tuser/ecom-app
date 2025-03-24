@@ -12,6 +12,7 @@
         "larabug/larabug": "^3.1",
         "laravel/breeze": "^2.2.2",
         "laravel/framework": "^11.28.1",
+        "laravel/octane": "^2.5",
         "laravel/pulse": "^1.2.5",
         "laravel/reverb": "@beta",
         "laravel/telescope": "^5.2.3",

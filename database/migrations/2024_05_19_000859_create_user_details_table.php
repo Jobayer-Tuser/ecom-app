@@ -12,18 +12,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_profiles', function (Blueprint $table) {
+        Schema::create('user_details', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnUpdate()->restrictOnDelete();
             $table->foreignId('country_id')->constrained()->cascadeOnUpdate()->restrictOnDelete();
             $table->string('phone');
+            $table->string('biography')->nullable();
             $table->string('phone_verified_at');
             $table->string('address');
             $table->string('post_code');
             $table->string('city');
             $table->string('state');
             $table->date('birth_date');
-            $table->string('description')->nullable();
             $table->enum('gender', [Gender::MALE->value, Gender::FEMALE->value]);
             $table->timestamps();
         });

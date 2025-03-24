@@ -16,9 +16,10 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             CategorySeeder::class,
+            RoleSeeder::class,
+            PostSeeder::class,
 //            ProductSeeder::class,
 //            ProductItemSeeder::class,
-            RoleSeeder::class,
         ]);
 
         # Seeding for HasMany Relation

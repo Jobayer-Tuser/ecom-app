@@ -60,7 +60,7 @@
                     <x-input-text id="email" type="email" name="email" :value="old('email')"  placeholder="username@address.com" required autofocus autocomplete="username" />
                 </div>
 
-                <!-- Passsword -->
+                <!-- Password -->
                 <div class="mb-3">
                     <div class="d-flex">
                         <x-input-label for="password" :value="__('Password')" />

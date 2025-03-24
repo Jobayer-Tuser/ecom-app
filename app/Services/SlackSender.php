@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Interfaces;
+namespace App\Services;
 
-use Modules\JiraBoard\Http\Controllers\TaskController;
+use App\Http\Controllers\Misc\TaskController;
+use App\Interfaces\NotificationSender;
 
 class SlackSender implements NotificationSender
 {
     public function send(TaskController $task): void
     {
-        // TODO: Implement send() method.
     }
 }

@@ -2,18 +2,20 @@
 
 namespace App\Enums;
 
-enum Role : int
+ enum Role : string
 {
-    case ADMIN  = 1;
-    case VENDOR = 2;
-    case USER   = 3;
+    case USER   = 'user';
+    case ADMIN  = 'admin';
+    case MANAGER = 'vendor';
+    case CUSTOMER = 'customer';
 
-    public function role() : string
+    public function toRoleId() : int
     {
-        return match ($this){
-            self::ADMIN   => 'admin',
-            self::VENDOR  => 'vendor',
-            self::USER    => 'user',
+        return match ($this) {
+            self::USER     => 1,
+            self::ADMIN    => 2,
+            self::MANAGER  => 3,
+            self::CUSTOMER => 4,
         };
     }
 }

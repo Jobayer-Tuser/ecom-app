@@ -2,14 +2,20 @@
 
 namespace App\Http\Controllers\Misc;
 
+use Generator;
 use App\Http\Controllers\Controller;
 use App\Models\GaugeReading;
-use Generator;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class GaugeReadingController extends Controller
+class FileUploadController extends Controller
 {
-    public function index(): void
+    public function index()
+    {
+        return view('admin.file-upload.index');
+    }
+
+    public function upload(): void
     {
         $filePath = public_path("small_set.csv");
 
@@ -72,7 +78,7 @@ class GaugeReadingController extends Controller
         $file = fopen($path, 'r');
         fgetcsv($file); # for skipping the first line.
 
-        $data =[];
+        $data = [];
 
         for ($ii = 1; ($row = fgetcsv($file)) !== false; $ii++)
         {
