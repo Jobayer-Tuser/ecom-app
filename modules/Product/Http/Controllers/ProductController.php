@@ -41,7 +41,6 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request) : RedirectResponse
     {
-        $request->validated();
         $this->productService->storeProduct($request);
         return redirect()->back();
     }

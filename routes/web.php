@@ -35,7 +35,7 @@ Route::group(['middleware' => 'auth', 'verified'], function () {
     });
 
     Route::group(['middleware' => ['user:user']], function (){
-        Route::get('checkrole', function (){
+        Route::get('check-role', function (){
 //            return redirect()->route('home');
         });
         Route::get('cart', [CartController::class, 'index'])->name('cart');
@@ -45,11 +45,13 @@ Route::group(['middleware' => 'auth', 'verified'], function () {
 require __DIR__.'/auth.php';
 
 Route::get('/', [HomepageController::class, 'index'])->name('home');
+Route::get("products/{product:slug}", [HomepageController::class, 'productDetails'])->name('product.details');
 Route::get('cart', [CartController::class, 'index'])->name('cart');
 Route::get('post', [PostController::class, 'index'])->name('blog.index');
 
 # Checkout
-Route::get('checkout', [CheckoutController::class, 'index'])->name('checkout');
+Route::get('checkout', [CheckoutController::class, 'create'])->name('checkout');
+//Route::get('checkout', [CheckoutController::class, 'index'])->name('checkout');
 
 
 Route::get('event', function (){

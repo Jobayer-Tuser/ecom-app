@@ -31,6 +31,17 @@ class ProductItemService
         return ProductItem::query()->create($prepareData);
     }
 
+    public function storeProductItems(array $requestItems, int $productId) : void
+    {
+        ProductItem::query()->create([
+            'product_id'        => $productId,
+            'sku'               => $requestItems['sku'],
+            'price'             => $requestItems['price'],
+            'sale_price'        => $requestItems['sale_price'],
+            'product_quantity'  => $requestItems['product_quantity'],
+        ]);
+    }
+
     private function storeFile(UploadedFile $image): string
     {
         $fileName = "PRODUCT_ITEM_" . date('his') . '.'. $image->clientExtension();

@@ -4,6 +4,7 @@ namespace Modules\Product\Models;
 
 use App\Casts\GenerateSlug;
 use App\Models\Category;
+use App\Traits\Sluggable;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -14,7 +15,7 @@ use Modules\Product\Events\ProductCreatedEvent;
 
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory, Sluggable;
 
     /**
      * The attributes that are mass assignable.
@@ -25,18 +26,20 @@ class Product extends Model
         'name',
         'slug',
         'summary',
+        'category_id',
         'description',
-        'image',
-        'category_id'
     ];
 
-    protected $casts = [
-        'slug' => GenerateSlug::class,
-    ];
+    protected string $sluggable = "name";
 
     protected $dispatchesEvents = [
-      'created' => ProductCreatedEvent::class,
+//      'created' => ProductCreatedEvent::class,
     ];
+
+//    public function getRouteKeyName(): string
+//    {
+//        return "slug";
+//    }
 
     public function category(): BelongsTo
     {

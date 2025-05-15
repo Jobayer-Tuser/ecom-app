@@ -57,7 +57,7 @@
                 <!-- Email Address -->
                 <div class="mb-3">
                     <x-input-label for="email" :value="__('Email')"/>
-                    <x-input-text id="email" type="email" name="email" :value="old('email')"  placeholder="username@address.com" required autofocus autocomplete="username" />
+                    <x-text-input id="email" type="email" name="email" :value="old('email')"  placeholder="username@address.com" required autofocus autocomplete="username" />
                 </div>
 
                 <!-- Password -->
@@ -71,7 +71,7 @@
                         @endif
                     </div>
 
-                    <x-input-text id="password" class="block mt-1 w-full"
+                    <x-text-input id="password" class="block mt-1 w-full"
                                   placeholder="Enter your password"
                                   type="password"
                                   name="password"

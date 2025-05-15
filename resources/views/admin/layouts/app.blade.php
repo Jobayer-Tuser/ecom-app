@@ -12,7 +12,7 @@
     @stack('css')
 </head>
 <body>
-<div id="app" class="app">
+<div id="app" class="app app-content-full-height">
     <div id="header" class="app-header">
         @include('admin.layouts.header')
     </div>
@@ -31,8 +31,10 @@
     </div>
 </div>
 
-<script src="{{asset('assets/js/vendor.min.js')}}" type="text/javascript"></script>
-<script src="{{asset("assets/js/app.min.js")}}" type="text/javascript"></script>
+<script src="{{ asset('assets/js/vendor.min.js')}}" type="text/javascript"></script>
+<script src="{{ asset("assets/js/app.min.js")}}" type="text/javascript"></script>
+<script src="{{ asset("assets/dist/app.js")}}" type="text/javascript"></script>
+
 <script src="{{asset('assets/plugins/jquery-migrate/dist/jquery-migrate.min.js')}}" type="text/javascript"></script>
 <script src="{{asset("assets/plugins/apexcharts/dist/apexcharts.min.js")}}" type="text/javascript"></script>
 @stack('script')

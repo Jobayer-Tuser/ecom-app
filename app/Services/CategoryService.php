@@ -13,9 +13,30 @@ class CategoryService
 {
     public function categories(): Collection
     {
-        return Category::with('parentCategory')
+        return $this->category()->with('parentCategory')->get();
+    }
+
+    public function category(): Builder
+    {
+        return Category::query()
             ->orderByDesc('id')
-            ->get(['id', 'name', 'parent_category_id', 'status']);
+            ->select('id', 'name', 'parent_category_id', 'status');
+    }
+
+    public function categoriesForHomepage(): Collection
+    {
+        return $this->category()
+            ->with('childCategories.childCategories')
+            ->whereNull('parent_category_id')
+            ->get();
+    }
+
+    public function categoriesForProductDetailsPage(): Collection
+    {
+        return $this->category()
+            ->whereNull('parent_category_id')
+            ->limit(8)
+            ->get();
     }
 
     public function storeCategory(array $storeData) : Builder|Model

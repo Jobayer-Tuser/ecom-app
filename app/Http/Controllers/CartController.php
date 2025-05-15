@@ -12,7 +12,7 @@ class CartController extends Controller
      */
     public function index() : View
     {
-        return view('front.cart');
+        return view('frontend.cart');
     }
 
     /**

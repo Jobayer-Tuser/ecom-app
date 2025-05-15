@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Services\CategoryService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\View\Factory;
 use Illuminate\View\View;
 
@@ -29,7 +30,7 @@ class CategoryController extends Controller
 
     public function edit(Category $category): Application|Factory|View
     {
-        $this->authorize('update', $category);
+        Gate::authorize('update', $category);
 
         $categories = $this->categoryService->categories();
         return view('admin.category.edit', compact('category', 'categories'));

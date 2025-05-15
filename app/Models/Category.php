@@ -40,6 +40,11 @@ class Category extends Model
         return $this->belongsTo(Category::class, 'parent_category_id', 'id');
     }
 
+    public function childCategories(): HasMany
+    {
+        return $this->hasMany(Category::class, 'parent_category_id', 'id');
+    }
+
     /**
      * Get the attributes that should be cast.
      *

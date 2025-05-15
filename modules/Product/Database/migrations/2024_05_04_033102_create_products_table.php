@@ -16,9 +16,9 @@ return new class extends Migration
             $table->foreignId('category_id')->constrained()->cascadeOnUpdate()->restrictOnDelete();
             $table->string('name');
             $table->string('slug');
-            $table->text('summary')->nullable();
+            $table->string('vendor')->nullable();
             $table->text('description');
-            $table->string('image');
+            $table->text('summary')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

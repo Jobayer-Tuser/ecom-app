@@ -2,32 +2,45 @@
 
 namespace Modules\Product\Services;
 
+use App\Services\TagService;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\DB;
 use Modules\Product\Http\Requests\ProductRequest;
 use Modules\Product\Models\Product;
+use Modules\Product\Models\ProductItem;
 use Nette\Utils\Image;
+use function Clue\StreamFilter\fun;
 
-class ProductService
+readonly class ProductService
 {
     /**
      * Create a new class instance.
      */
-    public function __construct()
-    {
-    }
+    public function __construct(
+        private ProductItemService    $productItemService,
+        private ProductVariantService $productVariantService,
+        private TagService $tagService
+    ){}
 
     public function getAllProducts() : LengthAwarePaginator
     {
-//        Product::with('category:id, name, category_id')->get();
-        return Product::query()->select(['id', 'name', 'image', 'category_id'])
-            ->with(['category' => function($query) {
-                $query->select('id', 'name');
-            }])
+        return Product::with([
+                'productItems:id,price,sale_price,product_id',
+                'category:id'
+            ])->select(['id', 'name', 'category_id', 'slug'])
             ->orderByDesc('id')
             ->paginate(20);
+    }
+
+    public function getProductBySlugName(string $slug)
+    {
+        return Product::with([
+            'category:id,name',
+            'productItems',
+            'productVariants'
+        ])->where('slug', $slug)->first();
     }
 
     public function getProductNameAndId() : Collection
@@ -35,11 +48,21 @@ class ProductService
         return Product::query()->get(['id', 'name']);
     }
 
-    public function storeProduct(ProductRequest $request): bool
+    public function storeProduct(ProductRequest $request): void
     {
-        $fileName    = $this->storeProductImage($request->file('image'));
-        $prepareData = $this->prepareData($request->except('_token'), $fileName);
-        return Product::query()->insert($prepareData);
+        DB::transaction(function () use ($request) {
+            $product = Product::query()->create([
+                'name'        => $request['name'],
+                'slug'        => $request['slug'],
+                'summary'     => $request['summary'],
+                'category_id' => $request['category_id'],
+                'description' => $request['description'],
+            ]);
+
+            $this->tagService->store($request->only('product_tag'), $product->id);
+            $this->productItemService->storeProductItems($request->only('sku', 'product_quantity', 'price', 'sale_price'), $product->id);
+            $this->productVariantService->storeProductVariants($request->only('variant'), $product->id);
+        });
     }
 
     private function storeProductImage(UploadedFile $image): string
@@ -56,15 +79,5 @@ class ProductService
     private function resizeImage(UploadedFile $image)
     {
 
-    }
-
-    private function prepareData(array $requestData, string $fileName): array
-    {
-        return array_merge( $requestData,
-            [
-                'image'      => $fileName,
-                'created_at' => date('Y-m-d H:i:s'),
-            ],
-        );
     }
 }

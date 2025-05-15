@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Stripe\Checkout\Session;
+use Stripe\Exception\ApiErrorException;
+use Stripe\StripeClient;
 
 class CheckoutController extends Controller
 {
@@ -12,15 +16,35 @@ class CheckoutController extends Controller
      */
     public function index() : View
     {
-        return view('front.checkout');
+        return view('frontend.checkout');
     }
 
     /**
      * Show the form for creating a new resource.
+     * @throws ApiErrorException
      */
-    public function create()
+    public function create(): RedirectResponse|array
     {
-        //
+        $stripe = new StripeClient(config('payment.stripe.secret'));
+        $checkout_session = $stripe->checkout->sessions->create([
+            "mode"      => "payment",
+            "locale"    => "auto",
+            "line_items" => [
+                [
+                    "price_data" => [
+                        "pa currency" => "usd",
+                        "unit_amount" => 2000,
+                        "product_data" => [
+                            "name" => "T-shirt",
+                        ],
+                    ],
+                    "quantity" => 1,
+                ]
+            ],
+            "success_url" => "http://127.0.0.1:8000/success",
+            "cancel_url" => "http://127.0.0.1:8000/cancel",
+        ]);
+        return redirect()->away($checkout_session->url);
     }
 
     /**
@@ -28,7 +52,7 @@ class CheckoutController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**

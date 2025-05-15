@@ -29,7 +29,7 @@ class CategoryRequest extends FormRequest
         return [
             'name'               => ['required', 'string','max:255'],
             'status'             => ['required', Rule::enum(Status::class)],
-            'parent_category_id' => ['nullable', 'integer', Rule::exists(Category::class)],
+            'parent_category_id' => ['nullable', 'integer', Rule::exists(Category::class, 'id')],
         ];
     }
 

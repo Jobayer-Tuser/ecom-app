@@ -27,17 +27,11 @@ class ProductRequest extends FormRequest
     {
         return [
             'name'        => ['required', 'string', 'max:255'],
-            'summary'     => ['required', 'string'],
+            'summary'     => ['required', 'string', 'max:255'],
             'description' => ['required', 'string'],
-            'image'       => ['required', 'image', 'max:2048', 'mimes:jpg,jpeg,png,pdf'],
+            'image'       => ['required', 'array', 'max:2048'],
+            'image.*'     => ['mimes:jpg,jpeg,png,pdf'],
             'category_id' => ['required', Rule::exists(Category::class, 'id')],
         ];
-    }
-
-    protected function prepareForValidation(): void
-    {
-        $this->merge([
-            'slug' => Str::slug($this->name),
-        ]);
     }
 }
