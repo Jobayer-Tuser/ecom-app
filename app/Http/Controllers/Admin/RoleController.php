@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Role;
 use App\Models\User;
+use App\Responses\RoleCreateAndEditResponse;
 use App\Services\PermissionService;
 use App\Services\RoleService;
 use Illuminate\Contracts\View\Factory;
@@ -17,23 +18,31 @@ use Illuminate\Support\Facades\Redirect;
 
 class RoleController extends Controller
 {
-    public function __construct(
-        private readonly RoleService $roleService,
-    ){}
-
-    public function index(): View|Factory|Application
+    public function index(RoleService $roleService, PermissionService $permissionService): RoleCreateAndEditResponse
     {
-        $roles = $this->roleService->getRoles();
-        $users = $this->roleService->getUsers();
-        return view('admin.role.index', compact('roles', 'users'));
+        return new RoleCreateAndEditResponse('index', $permissionService, $roleService);
     }
 
-    public function assignRole(Request $request): RedirectResponse
+    public function store(Request $request, RoleService $roleService): RedirectResponse
     {
-        $user = User::query()->find($request->user_id);
-        $role = Role::query()->find($request->role_id);
-        $user->roles()->sync($role);
+        $roleService->createRole(role: $request->only('name'), permissions: $request->permissions);
+        return to_route('role.index', 'Role created successfully.');
+    }
 
-        return Redirect::back();
+    public function edit(Role $role, PermissionService $permissionService): RoleCreateAndEditResponse
+    {
+        return new RoleCreateAndEditResponse( view: 'edit', permissionService: $permissionService, role: $role);
+    }
+
+    public function update(Role $role, Request $request, RoleService $roleService): RedirectResponse
+    {
+        $roleService->updateRole(role: $role, permissions: $request->permissions);
+        return Redirect::route('role.index', 'Role updated successfully.');
+    }
+
+    public function destroy(Role $role, RoleService $roleService): RedirectResponse
+    {
+        $roleService->deleteRole($role);
+        return Redirect::route('role.index', 'Role deleted successfully.');
     }
 }

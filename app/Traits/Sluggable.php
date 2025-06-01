@@ -6,9 +6,9 @@ use Illuminate\Support\Str;
 
 trait Sluggable
 {
-    public static function bootSluggable()
+    public static function bootSluggable(): void
     {
-        static::saving(function (self $model) {
+        static::saving(static function (self $model) {
             $slugColumn = $model->slugColumn ?? 'slug';
             $model->{$slugColumn} = Str::slug($model->{$model->sluggable});
         });

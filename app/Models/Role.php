@@ -2,25 +2,28 @@
 
 namespace App\Models;
 
+use App\Traits\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Role extends Model
 {
-    use HasFactory;
+    use Sluggable;
 
     protected $fillable = ['name', 'slug'];
 
+    protected string $sluggable = "name";
+
     public function users() : BelongsToMany
     {
-        return self::belongsToMany(related: User::class, table: 'role_user', foreignPivotKey: 'role_id', relatedPivotKey: 'user_id')
+        return $this->belongsToMany(related: User::class, table: 'role_user', foreignPivotKey: 'role_id', relatedPivotKey: 'user_id')
             ->withTimestamps();
     }
 
     public function permissions() : BelongsToMany
     {
-        return self::belongsToMany(related: Permission::class, table: 'permission_role');
+        return $this->belongsToMany(related: Permission::class, table: 'permission_role');
     }
 
     public function hasPermission( $permission )

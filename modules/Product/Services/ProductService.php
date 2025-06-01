@@ -31,7 +31,8 @@ readonly class ProductService
                 'category:id'
             ])->select(['id', 'name', 'category_id', 'slug'])
             ->orderByDesc('id')
-            ->paginate(20);
+            ->paginate(20)
+            ->withQueryString();
     }
 
     public function getProductBySlugName(string $slug)
@@ -48,6 +49,9 @@ readonly class ProductService
         return Product::query()->get(['id', 'name']);
     }
 
+    /**
+     * @throws \Throwable
+     */
     public function storeProduct(ProductRequest $request): void
     {
         DB::transaction(function () use ($request) {

@@ -12,7 +12,7 @@ class PostController extends Controller
 {
     public function index()
     {
-//        $posts = Post::allPosts();
+       $posts = Post::allPosts();
         $cachePosts = Post::query()->get();
 
         Redis::client()->set('posts_', $cachePosts);

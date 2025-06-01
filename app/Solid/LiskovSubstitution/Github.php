@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Http;
 
 class Github implements UserFetchApi
 {
-
     public function fetch(): array
     {
         $user = Http::get('https://jsonfakery.com/users/random');

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CategoryRequest;
 use App\Services\CategoryService;
 use Illuminate\Contracts\View\View;
 use Modules\Product\Models\Product;
@@ -19,7 +18,7 @@ class HomepageController extends Controller
         return view('frontend.home', compact('products', 'categories'));
     }
 
-    public function productDetails(Product $product, CategoryService $categoryService, ProductService $productService)//: View
+    public function productDetails(Product $product, CategoryService $categoryService, ProductService $productService) : View
     {
        $product = $productService->getProductBySlugName(slug: $product->slug);
        $categories = $categoryService->categoriesForHomepage();

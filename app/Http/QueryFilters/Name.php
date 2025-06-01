@@ -6,6 +6,6 @@ class Name extends Filter
 {
     protected function applyFilter($queryBuilder)
     {
-        return $queryBuilder->where(self::filterName(), 'REGEXP' ,request(self::filterName()));
+        return $queryBuilder->where($this->filterName(), 'REGEXP' ,request($this->filterName()));
     }
 }

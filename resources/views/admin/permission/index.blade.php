@@ -10,7 +10,7 @@
                     <div class="card-body">
                         <div class="row mb-n3">
                             <div class="col-xl-8">
-                                <div class="fs-12px text-muted mb-2"><b>Name</b></div>
+                                <div class="fs-12px text-muted mb-2"><b>Permission name</b></div>
                                 <input name="name" class="form-control mb-3" type="text" placeholder="Ex. Update, delete" value="{{ old('name') }}" />
                                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
                             </div>
@@ -46,8 +46,8 @@
                                     <td>{{ $permission->name }}</td>
                                     <td>{{ $permission->slug }}</td>
                                     <td class="d-flex justify-content-end">
-                                        <a href="{{ route('permission.edit', $permission) }}" class="btn btn-warning btn-sm"> <i class="fa fa-pen-square"></i> Edit </a>
-                                        <form method="POST" action="{{ route('role.destroy', $permission) }}" class="d-inline">
+                                        <a href="{{ route('permission.edit', $permission) }}" class="btn btn-warning btn-sm me-2"> <i class="fa fa-pen-square"></i> Edit </a>
+                                        <form method="POST" action="{{ route('permission.destroy', $permission) }}">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i> Delete</button>

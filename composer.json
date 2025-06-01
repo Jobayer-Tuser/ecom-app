@@ -22,6 +22,7 @@
         "paddlehq/paddle-php-sdk": "^1.9",
         "php-http/guzzle7-adapter": "^1.1",
         "predis/predis": "^2.3.0",
+        "razorpay/razorpay": "^2.9",
         "stripe/stripe-php": "^17.1",
         "vladimir-yuldashev/laravel-queue-rabbitmq": "^14.1.0"
     },

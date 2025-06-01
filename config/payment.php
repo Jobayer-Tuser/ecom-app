@@ -1,10 +1,11 @@
 <?php
 
 return [
-    'payment_processor' => env('PAYMENT_PROCESSOR', 'stripe'),
+    'processor' => env('PROCESSOR', 'stripe'),
     'stripe' => [
-        'mode'           => env('STRIPE_PAYMENT_MODE', 'sandbox'),
-        'secret'         => env('STRIPE_SECRET_KEY'),
+        'mode'           => env('STRIPE_MODE', 'sandbox'),
+        'api_key'        => env('STRIPE_API_KEY'),
+        'secret_key'     => env('STRIPE_SECRET_KEY'),
         'webhook_secret' => env('STRIPE_WEBHOOK_SECRET'),
     ],
     'paypal' => [

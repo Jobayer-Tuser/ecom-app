@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 abstract class Filter
 {
-    protected abstract function applyFilter($queryBuilder);
+    abstract protected function applyFilter($queryBuilder);
 
     /**
      * Handle an incoming request.
@@ -19,7 +19,7 @@ abstract class Filter
      */
     public function handle(Builder $builder, Closure $next)
     {
-        if ( ! request()->has(self::filterName()) ) {
+        if ( ! request()->has($this->filterName()) ) {
             return $next($builder);
         }
 
